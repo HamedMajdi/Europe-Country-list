@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Europe Country List</string>
+    <string name="error_text">An Error Occured When Retrieving the info\n</string>
+</resources>
