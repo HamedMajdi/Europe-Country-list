@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.europecountrylist.R
 import com.example.europecountrylist.viewmodel.ListViewModel
 
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var rvCountriesList: RecyclerView
     lateinit var tvListError: TextView
     lateinit var pbLoading: ProgressBar
+    lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +30,21 @@ class MainActivity : AppCompatActivity() {
         rvCountriesList = findViewById(R.id.countriesList)
         tvListError = findViewById(R.id.list_error)
         pbLoading = findViewById(R.id.loading_view)
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
+
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
+            viewModel.refresh()
+        }
+
+//        viewModel = ViewModelProvider(
+//            this,
+//            ViewModelProvider.NewInstanceFactory()
+//        ).get(ListViewModel::class.java)
+
+        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
 
 
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(ListViewModel::class.java)
         viewModel.refresh()
 
         rvCountriesList.apply {
@@ -45,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     fun observeViewModel() {
         viewModel.countries.observe(this, Observer { countries ->
+            rvCountriesList.visibility = View.VISIBLE
             countries?.let { countriesAdapter.updateCountries(it) }
         })
 

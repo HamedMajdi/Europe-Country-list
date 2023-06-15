@@ -1,12 +1,17 @@
 package com.example.europecountrylist.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.europecountrylist.R
 import com.example.europecountrylist.model.Country
+import com.example.europecountrylist.utils.getProgressDrawable
+import com.example.europecountrylist.utils.loadImage
 
 class CountryListAdapter(var countries: ArrayList<Country>): RecyclerView.Adapter<CountryListAdapter.CountryViewHolder>() {
 
@@ -33,14 +38,14 @@ class CountryListAdapter(var countries: ArrayList<Country>): RecyclerView.Adapte
     class CountryViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
         private val countryName: TextView = view.findViewById(R.id.name)
-//        private val imageView = view.imageView
-//        private val countryCapital = view.capital
-//        private val progressDrawable = getProgressDrawable(view.context)
+        private val imageView: ImageView = view.findViewById(R.id.imageView)
+        private val countryCapital: TextView = view.findViewById(R.id.capital)
+        private val progressDrawable = getProgressDrawable(view.context)
 
         fun bind(country: Country) {
-            countryName.text = country.countryName
-//            countryCapital.text = country.capital
-//            imageView.loadImage(country.flag, progressDrawable)
+            countryName.text = country.countryName.finalName
+            countryCapital.text = country.capital?.get(0) ?: "NOT FOUND"
+            imageView.loadImage(country.flag?.finalPhoto, progressDrawable)
         }
     }
 }
