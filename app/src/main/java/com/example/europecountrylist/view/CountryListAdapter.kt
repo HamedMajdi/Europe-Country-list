@@ -1,12 +1,10 @@
 package com.example.europecountrylist.view
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.europecountrylist.R
 import com.example.europecountrylist.model.Country
@@ -37,14 +35,35 @@ class CountryListAdapter(var countries: ArrayList<Country>): RecyclerView.Adapte
 
     class CountryViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        private val countryName: TextView = view.findViewById(R.id.name)
+        private val countryName: TextView = view.findViewById(R.id.tv_row_country_name)
+        private val region: TextView = view.findViewById(R.id.tv_sub_region)
+
+        private val tvArea: TextView = view.findViewById(R.id.tv_area)
+        private val phoneCode: TextView = view.findViewById(R.id.tv_phone_code)
+
         private val imageView: ImageView = view.findViewById(R.id.imageView)
-        private val countryCapital: TextView = view.findViewById(R.id.capital)
+        private val countryCapital: TextView = view.findViewById(R.id.tv_capital)
         private val progressDrawable = getProgressDrawable(view.context)
 
         fun bind(country: Country) {
             countryName.text = country.countryName.finalName
             countryCapital.text = country.capital?.get(0) ?: "NOT FOUND"
+            region.text = country.subRegion
+            tvArea.text = country.area.toString()
+
+            val area = country.area
+            if (area != null) {
+                if (area % 1 == 0.0){
+                    tvArea.text = (area.toInt()).toString()
+                } else {
+                    tvArea.text = area.toString()
+                }
+            }
+
+
+            phoneCode.text = country.phone?.root + country.phone?.suffix?.get(0)
+
+
             imageView.loadImage(country.flag?.finalPhoto, progressDrawable)
         }
     }

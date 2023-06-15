@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var tvListError: TextView
     lateinit var pbLoading: ProgressBar
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    lateinit var searchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +33,24 @@ class MainActivity : AppCompatActivity() {
         pbLoading = findViewById(R.id.loading_view)
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
 
+
+        searchView = findViewById(R.id.sv_country)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.filterItems(newText)
+                return true
+            }
+        })
+
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = false
             viewModel.refresh()
         }
 
-//        viewModel = ViewModelProvider(
-//            this,
-//            ViewModelProvider.NewInstanceFactory()
-//        ).get(ListViewModel::class.java)
 
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
 
@@ -61,17 +71,21 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.countryLoadError.observe(this, Observer { isError ->
-            isError?.let { tvListError.visibility = if(it) View.VISIBLE else View.GONE }
+            isError?.let { tvListError.visibility = if (it) View.VISIBLE else View.GONE }
         })
 
         viewModel.loading.observe(this, Observer { isLoading ->
             isLoading?.let {
-                pbLoading.visibility = if(it) View.VISIBLE else View.GONE
-                if(it) {
+                pbLoading.visibility = if (it) View.VISIBLE else View.GONE
+                if (it) {
                     tvListError.visibility = View.GONE
                     rvCountriesList.visibility = View.GONE
                 }
             }
+        })
+
+        viewModel.filteredItems.observe(this, { items ->
+            countriesAdapter.updateCountries(items)
         })
     }
 }

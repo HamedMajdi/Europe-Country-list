@@ -1,6 +1,7 @@
 package com.example.europecountrylist.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.europecountrylist.model.CountriesService
@@ -18,11 +19,15 @@ class ListViewModel : ViewModel() {
     // disposable uses RxJava to get the information from server. Then when the viewModel is closed,
     // we will close that connection
     private val disposable = CompositeDisposable()
-//    private val a = io.reactivex.rxjava3.disposables.CompositeDisposable()
 
     val countries = MutableLiveData<List<Country>>()
     val countryLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
+
+    // items hold the complete list of items fetched from the server
+    private val _filteredItems = MutableLiveData<List<Country>>()
+    val filteredItems: LiveData<List<Country>> = _filteredItems
+
 
     fun refresh() {
         fetchCountries()
@@ -38,8 +43,10 @@ class ListViewModel : ViewModel() {
                 .subscribeWith(object: DisposableSingleObserver<List<Country>>() {
                     override fun onSuccess(value: List<Country>?) {
                         countries.value = value
+                        filterItems("")
                         countryLoadError.value = false
                         loading.value = false
+
                     }
 
                     override fun onError(e: Throwable?) {
@@ -55,5 +62,19 @@ class ListViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         disposable.clear()
+    }
+
+    fun filterItems(query: String) {
+        val originalList = countries.value ?: emptyList()
+
+        val filteredList = if (query.isNotBlank()) {
+            originalList.filter { item ->
+                item.countryName.finalName.contains(query, ignoreCase = true)
+            }
+        } else {
+            originalList
+        }
+
+        _filteredItems.value = filteredList
     }
 }
