@@ -1,5 +1,6 @@
 package com.example.europecountrylist.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,17 +47,24 @@ class CountryListAdapter(var countries: ArrayList<Country>): RecyclerView.Adapte
         private val progressDrawable = getProgressDrawable(view.context)
 
         fun bind(country: Country) {
+
+            Log.d("GSON_TEST", country.currency.keys.toString())
+            for ((key, value) in country.languages) {
+                Log.d("GSON_TEST_LANG", "KEY: $key, VALUE: $value")
+            }
+
+
+
             countryName.text = country.countryName.finalName
             countryCapital.text = country.capital?.get(0) ?: "NOT FOUND"
             region.text = country.subRegion
-            tvArea.text = country.area.toString()
 
             val area = country.area
             if (area != null) {
                 if (area % 1 == 0.0){
-                    tvArea.text = (area.toInt()).toString()
+                    tvArea.text = (area.toInt()).toString() + " KM"
                 } else {
-                    tvArea.text = area.toString()
+                    tvArea.text = area.toString() + "KM"
                 }
             }
 

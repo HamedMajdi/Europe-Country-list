@@ -2,7 +2,9 @@ package com.example.europecountrylist.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
     lateinit var searchView: SearchView
 
+    lateinit var button: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -52,6 +55,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        button = findViewById(R.id.button2)
+        button.setOnClickListener {
+
+            Log.d("AAAAA: ", "CLICKED")
+            viewModel.sortItemsByName()
+
+        }
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
 
 
@@ -61,13 +71,16 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
             adapter = countriesAdapter
         }
+
+
         observeViewModel()
     }
 
     fun observeViewModel() {
         viewModel.countries.observe(this, Observer { countries ->
             rvCountriesList.visibility = View.VISIBLE
-            countries?.let { countriesAdapter.updateCountries(it) }
+            countries?.let {
+                countriesAdapter.updateCountries(it) }
         })
 
         viewModel.countryLoadError.observe(this, Observer { isError ->
@@ -85,6 +98,10 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.filteredItems.observe(this, { items ->
+            countriesAdapter.updateCountries(items)
+        })
+
+        viewModel.sortedItems.observe(this, { items ->
             countriesAdapter.updateCountries(items)
         })
     }

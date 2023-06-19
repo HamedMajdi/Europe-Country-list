@@ -2,6 +2,7 @@ package com.example.europecountrylist.model
 
 import com.google.gson.Gson
 import com.google.gson.JsonElement
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class Country(
@@ -21,8 +22,22 @@ data class Country(
     val area: Double?,
 
     @SerializedName("subregion")
-    val subRegion: String?
+    val subRegion: String?,
+
+    @SerializedName("currencies")
+    val currency: Map<String, Currencies>,
+
+    @SerializedName("languages")
+    val languages: Map<String, String>,
+
     )
+
+data class Currencies(
+    @SerializedName("name")
+    val id: String,
+    @SerializedName("symbol")
+    val bucket: String,
+)
 
 data class Name(
     @SerializedName("common")
