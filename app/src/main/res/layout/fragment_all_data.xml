@@ -8,15 +8,15 @@
     tools:context=".view.FragmentAllData">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/MainScreenBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FAFAFA">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/linearLayout"
+            style="@style/backgroundColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
             android:elevation="8dp"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
@@ -34,33 +34,32 @@
                 app:queryHint="Search for the country..." />
 
             <LinearLayout
-                android:background="@drawable/bg_no_leftright_border"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/bg_no_leftright_border"
                 android:orientation="horizontal">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:background="@drawable/bg_no_left_border"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_no_left_border">
 
                     <Button
+                        android:background="?android:attr/selectableItemBackground"
                         android:id="@+id/button_filter"
-                        style="@style/Widget.AppCompat.CompoundButton.Switch"
+                        style="@style/buttonText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_filter"
                         android:text="Filter"
-                        android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:visibility="gone"
                         android:id="@+id/tv_filter_numbers"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
@@ -69,9 +68,9 @@
                         android:background="@drawable/circle"
                         android:gravity="center"
                         android:text="2"
-                        android:textColor="@color/white"
                         android:textSize="11sp"
                         android:textStyle="bold"
+                        android:visibility="gone"
                         app:layout_constraintLeft_toRightOf="@id/button_filter"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,14 +83,13 @@
                     android:layout_weight="1">
 
                     <Button
-
                         android:id="@+id/button_sort"
-                        style="@style/Widget.AppCompat.CompoundButton.Switch"
+                        style="@style/buttonText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
                         android:drawableLeft="@drawable/ic_sort"
                         android:text="Sort"
-                        android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

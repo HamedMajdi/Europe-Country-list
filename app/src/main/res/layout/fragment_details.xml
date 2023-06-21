@@ -8,6 +8,7 @@
     tools:context=".view.FragmentDetails">
 
     <LinearLayout
+        style="@style/backgroundColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -34,7 +35,8 @@
             android:lineSpacingExtra="6dp"
             android:padding="12dp"
             android:text="PlaceHolderalksgj askljgasgj'askljgd'askjg asjglsadgj alskghas"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            style="@style/text"/>
 
         <LinearLayout
             android:layout_width="match_parent"

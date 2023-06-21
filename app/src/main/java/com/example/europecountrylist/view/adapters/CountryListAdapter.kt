@@ -1,6 +1,5 @@
-package com.example.europecountrylist.view
+package com.example.europecountrylist.view.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,9 +73,9 @@ class CountryListAdapter(var countries: ArrayList<Country>, private val listener
 
             imageView.loadImage(country.flag?.finalPhoto, progressDrawable)
 
-            itemFull.setOnClickListener(View.OnClickListener {
+            itemFull.setOnClickListener {
                 listener.onItemClicked(country)
-            })
+            }
         }
     }
 

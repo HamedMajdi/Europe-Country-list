@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
     android:elevation="8dp"
+    style="@style/backgroundColor"
     android:layout_margin="8dp">
 
 
     <com.google.android.material.card.MaterialCardView
+
         android:id="@+id/item_full"
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -26,7 +27,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fff"
+            style="@style/backgroundColor"
             android:orientation="vertical">
 
             <LinearLayout
@@ -56,6 +57,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/text"
                         android:id="@+id/tv_row_country_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -68,6 +70,7 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        style="@style/text"
                         android:id="@+id/tv_sub_region"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -106,6 +109,7 @@
                         android:src="@drawable/capital" />
 
                     <TextView
+                        style="@style/text"
                         android:id="@+id/tv_capital"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -136,6 +140,7 @@
                         android:src="@drawable/area" />
 
                     <TextView
+                        style="@style/text"
                         android:id="@+id/tv_area"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -165,6 +170,7 @@
                         android:src="@drawable/phone_code" />
 
                     <TextView
+                        style="@style/text"
                         android:id="@+id/tv_phone_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

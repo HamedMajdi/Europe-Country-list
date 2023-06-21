@@ -2,20 +2,19 @@ package com.example.europecountrylist.view
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.europecountrylist.databinding.FragmentAllDataBinding
 import com.example.europecountrylist.model.Country
+import com.example.europecountrylist.view.adapters.CountryListAdapter
 import com.example.europecountrylist.viewmodel.ListViewModel
-import java.lang.Exception
 
 class FragmentAllData : Fragment(), CountryListAdapter.OnItemClickListener {
 
@@ -28,14 +27,9 @@ class FragmentAllData : Fragment(), CountryListAdapter.OnItemClickListener {
     lateinit var binding: FragmentAllDataBinding
     private val args: FragmentAllDataArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         binding = FragmentAllDataBinding.inflate(inflater, container, false)
         return binding.root
@@ -49,9 +43,9 @@ class FragmentAllData : Fragment(), CountryListAdapter.OnItemClickListener {
             ascending = args.ascending
             sortCriteria = args.sortType
 
-            if (args.filters!!.size > 0){
+            if (args.filters!!.isNotEmpty()){
                 filter = args.filters
-                binding.tvFilterNumbers.setText(args.filters!!.size.toString())
+                binding.tvFilterNumbers.text = args.filters!!.size.toString()
                 binding.tvFilterNumbers.visibility = View.VISIBLE
             }
 
@@ -81,7 +75,6 @@ class FragmentAllData : Fragment(), CountryListAdapter.OnItemClickListener {
             val direction = FragmentAllDataDirections.actionFragmentAllDataToFragmentFilter(filter, ascending, sortCriteria)
             findNavController().navigate(direction)
 
-
         }
 
         binding.buttonSort.setOnClickListener {
@@ -105,18 +98,18 @@ class FragmentAllData : Fragment(), CountryListAdapter.OnItemClickListener {
 
     fun observeViewModel() {
 
-        viewModel.countries.observe(viewLifecycleOwner, Observer { countries ->
+        viewModel.countries.observe(viewLifecycleOwner) { countries ->
             binding.countriesList.visibility = View.VISIBLE
             countries?.let {
                 countriesAdapter.updateCountries(it)
             }
-        })
+        }
 
-        viewModel.countryLoadError.observe(viewLifecycleOwner, Observer { isError ->
+        viewModel.countryLoadError.observe(viewLifecycleOwner) { isError ->
             isError?.let { binding.listError.visibility = if (it) View.VISIBLE else View.GONE }
-        })
+        }
 
-        viewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
+        viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
             isLoading?.let {
                 binding.loadingView.visibility = if (it) View.VISIBLE else View.GONE
                 if (it) {
@@ -124,11 +117,11 @@ class FragmentAllData : Fragment(), CountryListAdapter.OnItemClickListener {
                     binding.countriesList.visibility = View.GONE
                 }
             }
-        })
+        }
 
-        viewModel._filteredItems.observe(viewLifecycleOwner, { items ->
+        viewModel._filteredItems.observe(viewLifecycleOwner) { items ->
             countriesAdapter.updateCountries(items)
-        })
+        }
 
 
     }

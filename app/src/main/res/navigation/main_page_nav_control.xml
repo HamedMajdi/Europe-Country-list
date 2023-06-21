@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_page_nav_control"
-    app:startDestination="@id/fragmentAllData">
+    app:startDestination="@id/fragmentSplash">
 
     <fragment
         android:id="@+id/fragmentAllData"
@@ -23,7 +23,9 @@
             app:nullable="true" />
         <action
             android:id="@+id/action_fragmentAllData_to_fragmentDetails"
-            app:destination="@id/fragmentDetails" />
+            app:destination="@id/fragmentDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_fragmentAllData_to_fragmentSort"
             app:destination="@id/fragmentSort" />
@@ -69,7 +71,7 @@
             android:name="country_details"
             app:argType="com.example.europecountrylist.model.Country" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/fragmentSort"
         android:name="com.example.europecountrylist.view.FragmentSort"
         android:label="fragment_sort"
@@ -89,6 +91,18 @@
             android:name="sort_type"
             app:argType="string"
             app:nullable="true" />
+    </dialog>
+    <fragment
+        android:id="@+id/fragmentSplash"
+        android:name="com.example.europecountrylist.view.FragmentSplash"
+        android:label="FragmentSplash" >
+        <action
+            android:id="@+id/action_fragmentSplash_to_fragmentAllData"
+            app:destination="@id/fragmentAllData"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/fragmentSplash"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

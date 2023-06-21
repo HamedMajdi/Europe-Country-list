@@ -1,11 +1,10 @@
 package com.example.europecountrylist.view
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.europecountrylist.databinding.FragmentDetailsBinding
 import com.example.europecountrylist.utils.getProgressDrawable
@@ -20,7 +19,7 @@ class FragmentDetails : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
@@ -35,61 +34,61 @@ class FragmentDetails : Fragment() {
         val capital = args.countryDetails.capital!!.get(0)
         val phone = args.countryDetails.phone!!.root+ args.countryDetails.phone!!.suffix!!.get(0)
         val area = dec.format(args.countryDetails.area)
-        var population = dec.format(args.countryDetails.population)
+        val population = dec.format(args.countryDetails.population)
 
 
 
         val subRegion = args.countryDetails.subRegion!!
 
         binding.ivDetailsFlag.loadImage(args.countryDetails.flag?.finalPhoto, getProgressDrawable(view.context))
-        binding.tvDetailsName.setText(name)
-        binding.tvDetailsCapital.setText(capital)
-        binding.tvDetailsPhone.setText(phone)
-        binding.tvDetailsArea.setText(area + "km²")
-        binding.tvDetailsPopulation.setText(population)
-        binding.tvDetailsSubregion.setText(subRegion)
+        binding.tvDetailsName.text = name
+        binding.tvDetailsCapital.text = capital
+        binding.tvDetailsPhone.text = phone
+        binding.tvDetailsArea.text = area + "km²"
+        binding.tvDetailsPopulation.text = population
+        binding.tvDetailsSubregion.text = subRegion
 
         var currency = ""
-        var keys_curr = args.countryDetails.currency.keys
-        for (i in 0..keys_curr.size-1){
+        val keysCurrency = args.countryDetails.currency.keys
+        for (i in keysCurrency.indices){
 
-            currency += keys_curr.elementAt(i) + "   (" + args.countryDetails.currency.values.elementAt(i).name +")"
-            if ((i - keys_curr.size) > 0){
+            currency += keysCurrency.elementAt(i) + "   (" + args.countryDetails.currency.values.elementAt(i).name +")"
+            if ((i - keysCurrency.size) > 0){
                 currency += "\n"
             }
         }
 
-        binding.tvDetailsCurrency.setText(currency)
+        binding.tvDetailsCurrency.text = currency
 
         var languages = ""
-        var keys_lang = args.countryDetails.languages.keys
-        for (i in 0..keys_lang.size-1){
+        val keysLang = args.countryDetails.languages.keys
+        for (i in keysLang.indices){
 
-            languages += keys_lang.elementAt(i) + "   (" + args.countryDetails.languages.values.elementAt(i) +")"
-            if ((i - keys_lang.size) > 0){
+            languages += keysLang.elementAt(i) + "   (" + args.countryDetails.languages.values.elementAt(i) +")"
+            if ((i - keysLang.size) > 0){
                 languages += "\n"
             }
         }
 
-        binding.tvDetailsLanguage.setText(languages)
+        binding.tvDetailsLanguage.text = languages
 
 
         var borders = ""
-        for (i in 0..args.countryDetails.borders!!.size-1){
+        for (i in 0 until args.countryDetails.borders!!.size){
 
             borders += args.countryDetails.borders!!.get(i)
-            if ((i - keys_lang.size) > 0){
+            if ((i - keysLang.size) > 0){
                 borders += "\n"
             }
         }
-        binding.tvDetailsBorder.setText(borders)
+        binding.tvDetailsBorder.text = borders
 
-        var firstLanguage = args.countryDetails.languages.values.elementAt(0)
-        var text = "$name is a European country located in $subRegion. " +
+        val firstLanguage = args.countryDetails.languages.values.elementAt(0)
+        val text = "$name is a European country located in $subRegion. " +
                 "It has a population of $population people and covers an area of $area km². " +
                 "The capital of $name is $capital, and the official language spoken is $firstLanguage."
 
-        binding.tvBrief.setText(text)
+        binding.tvBrief.text = text
 
 
     }

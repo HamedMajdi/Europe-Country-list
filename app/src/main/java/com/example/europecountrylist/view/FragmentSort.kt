@@ -10,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.europecountrylist.R
 import com.example.europecountrylist.databinding.FragmentSortBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import java.lang.Exception
 
 class FragmentSort : BottomSheetDialogFragment() {
 
@@ -20,7 +19,7 @@ class FragmentSort : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentSortBinding.inflate(inflater, container, false)
         return binding.root
@@ -33,17 +32,17 @@ class FragmentSort : BottomSheetDialogFragment() {
         try {
             if (args.ascending == 1){
                 when(args.sortType){
-                    "name" -> binding.rbAlphaZa.setChecked(true)
-                    "area" -> binding.rbAreaLow.setChecked(true)
-                    "population" -> binding.rbPopulationLow.setChecked(true)
+                    "name" -> binding.rbAlphaZa.isChecked = true
+                    "area" -> binding.rbAreaLow.isChecked = true
+                    "population" -> binding.rbPopulationLow.isChecked = true
                 }
             }
             else if (args.ascending == 0){
 
                 when(args.sortType){
-                    "name" -> binding.rbAlphaAz.setChecked(true)
-                    "area" -> binding.rbAreaHigh.setChecked(true)
-                    "population" -> binding.rbPopulationHigh.setChecked(true)
+                    "name" -> binding.rbAlphaAz.isChecked = true
+                    "area" -> binding.rbAreaHigh.isChecked = true
+                    "population" -> binding.rbPopulationHigh.isChecked = true
                 }
             }
 
@@ -52,7 +51,7 @@ class FragmentSort : BottomSheetDialogFragment() {
             Log.e("SORT", e.toString(), )
         }
 
-        binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId){
                 R.id.rb_alpha_az -> {
                     val direction = FragmentSortDirections

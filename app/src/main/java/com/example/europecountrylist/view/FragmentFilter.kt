@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.europecountrylist.R
 import com.example.europecountrylist.databinding.FragmentFilterBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.lang.Exception
@@ -27,9 +26,9 @@ class FragmentFilter : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFilterBinding.inflate(inflater, container, false)
-        binding.root.setBackgroundColor(getResources().getColor(android.R.color.white))
+//        binding.root.setBackgroundColor(getResources().getColor(android.R.color.white))
         return binding.root
     }
 
@@ -37,8 +36,8 @@ class FragmentFilter : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         try {
-            if (args.filters!!.size > 0){
-                for(i in 0..args.filters!!.size-1){
+            if (args.filters!!.isNotEmpty()){
+                for(i in 0 until args.filters!!.size){
 
                     when(args.filters!!.get(0)){
                         "Southeast Europe" -> {
@@ -157,7 +156,7 @@ class FragmentFilter : BottomSheetDialogFragment() {
     fun clicked(whichOne: Int) {
 
         when (whichOne) {
-            1 -> if (isCheckedSEE == false) {
+            1 -> if (!isCheckedSEE) {
                 binding.checkboxSee.setMinAndMaxFrame(30, 90)
                 binding.checkboxSee.playAnimation()
                 isCheckedSEE = true
@@ -167,7 +166,7 @@ class FragmentFilter : BottomSheetDialogFragment() {
                 isCheckedSEE = false
             }
 
-            2 -> if (isCheckedSE == false) {
+            2 -> if (!isCheckedSE) {
                 binding.checkboxSe.setMinAndMaxFrame(30, 90)
                 binding.checkboxSe.playAnimation()
                 isCheckedSE = true
@@ -177,7 +176,7 @@ class FragmentFilter : BottomSheetDialogFragment() {
                 isCheckedSE = false
             }
 
-            3 -> if (isCheckedEE == false) {
+            3 -> if (!isCheckedEE) {
                 binding.checkboxEe.setMinAndMaxFrame(30, 90)
                 binding.checkboxEe.playAnimation()
                 isCheckedEE = true
@@ -187,7 +186,7 @@ class FragmentFilter : BottomSheetDialogFragment() {
                 isCheckedEE = false
             }
 
-            4 -> if (isCheckedNE == false) {
+            4 -> if (!isCheckedNE) {
                 binding.checkboxNe.setMinAndMaxFrame(30, 90)
                 binding.checkboxNe.playAnimation()
                 isCheckedNE = true
@@ -197,7 +196,7 @@ class FragmentFilter : BottomSheetDialogFragment() {
                 isCheckedNE = false
             }
 
-            5 -> if (isCheckedCE == false) {
+            5 -> if (!isCheckedCE) {
                 binding.checkboxCe.setMinAndMaxFrame(30, 90)
                 binding.checkboxCe.playAnimation()
                 isCheckedCE = true
@@ -207,7 +206,7 @@ class FragmentFilter : BottomSheetDialogFragment() {
                 isCheckedCE = false
             }
 
-            6 -> if (isCheckedWE == false) {
+            6 -> if (!isCheckedWE) {
                 binding.checkboxWe.setMinAndMaxFrame(30, 90)
                 binding.checkboxWe.playAnimation()
                 isCheckedWE = true

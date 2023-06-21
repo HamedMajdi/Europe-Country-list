@@ -3,4 +3,18 @@
     <string name="error_text">An Error Occured When Retrieving the info\n</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="checkbox_unboarding">Don\'t Show the Onboarding Screen Again!</string>
+    <string name="btn_go_to_app">Go to App</string>
+    <string name="onboarding4_long">Enjoy a visually appealing with auto Dark and light mode and user-friendly interface that makes it easy to search for specific countries or browse through the entire collection effortlessly. Intuitive navigation ensures a seamless experience while accessing information.</string>
+    <string name="onboarding4_second">Interface</string>
+    <string name="onboarding4_first">User-Friendly</string>
+    <string name="onboarding2_first">Country</string>
+    <string name="onboarding2_second">Profiles</string>
+    <string name="onboarding2_long">Access comprehensive country profiles that offer in-depth insights into various aspects. Uncover essential information such as population size, land area, official languages, national currency, capital cities, and neighboring borders.</string>
+    <string name="onboarding1_first">European</string>
+    <string name="onboarding1_second">Countries</string>
+    <string name="onboarding1_long">Explore European Countries: Dive into a vast collection of European countries, ranging from the United Kingdom to Greece and everything in between. Discover lesser-known gems and familiarize yourself with the unique characteristics of each nation.</string>
+    <string name="onboarding3_first">Regional</string>
+    <string name="onboarding3_second">Categorization</string>
+    <string name="onboarding3_long">Explore Europe through a regional lens with the app\'s intuitive region categorization. Seamlessly navigate between Northern Europe, Southern Europe, Eastern Europe, Western Europe, and more, and delve into the distinct cultural, historical, and geographical aspects of each region.</string>
 </resources>

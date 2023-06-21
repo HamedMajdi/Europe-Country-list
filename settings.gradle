@@ -10,6 +10,16 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            name = "GitHubPackages"
+            url 'https://maven.pkg.github.com/Cuberto/liquid-swipe-android'
+            credentials {
+
+                username = "13480928"
+                password = "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"
+
+            }
+        }
     }
 }
 rootProject.name = "Europe Country List"

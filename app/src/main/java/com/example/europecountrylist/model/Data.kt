@@ -1,9 +1,8 @@
+@file:Suppress("DEPRECATED_ANNOTATION")
+
 package com.example.europecountrylist.model
 
 import android.os.Parcelable
-import com.google.gson.Gson
-import com.google.gson.JsonElement
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 

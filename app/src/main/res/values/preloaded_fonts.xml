@@ -4,6 +4,7 @@
         <item>@font/acme</item>
         <item>@font/akaya_telivigala</item>
         <item>@font/allerta</item>
+        <item>@font/andika_new_basic_bold</item>
         <item>@font/neuton</item>
         <item>@font/neuton_bold</item>
         <item>@font/neuton_extrabold</item>
@@ -11,5 +12,7 @@
         <item>@font/roboto_slab</item>
         <item>@font/roboto_slab_bold</item>
         <item>@font/roboto_thin</item>
+        <item>@font/solway</item>
+        <item>@font/solway_bold</item>
     </array>
 </resources>
