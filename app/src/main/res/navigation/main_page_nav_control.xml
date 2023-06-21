@@ -64,7 +64,11 @@
         android:id="@+id/fragmentDetails"
         android:name="com.example.europecountrylist.view.FragmentDetails"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="country_details"
+            app:argType="com.example.europecountrylist.model.Country" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentSort"
         android:name="com.example.europecountrylist.view.FragmentSort"

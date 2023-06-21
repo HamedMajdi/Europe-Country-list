@@ -134,7 +134,7 @@ class FragmentAllData : Fragment(), CountryListAdapter.OnItemClickListener {
     }
 
     override fun onItemClicked(country: Country) {
-        val action = FragmentAllDataDirections.actionFragmentAllDataToFragmentDetails()
+        val action = FragmentAllDataDirections.actionFragmentAllDataToFragmentDetails(country)
         findNavController().navigate(action )
     }
 

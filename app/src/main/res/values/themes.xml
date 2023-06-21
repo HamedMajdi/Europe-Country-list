@@ -16,9 +16,111 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="Smaller_Drawable">
-        <item name="android:textSize">48sp</item>
-        <item name="android:scaleX">0.3</item>
-        <item name="android:scaleY">0.3</item>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize20Percent" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10%</item>
+        <item name="backgroundTint">@android:color/white</item>
+    </style>
+
+    <style name="textViewDetails_Holder">
+        <item name="fontFamily">@font/roboto_slab</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="textViewDetails_value">
+        <item name="fontFamily">@font/neuton_bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    
+    <style name="details_name_textview_holder" parent="textViewDetails_Holder">
+        <item name="android:textColor">#1884A1</item>
+    </style>
+
+    <style name="details_name_textview_value" parent="textViewDetails_value">
+        <item name="android:textColor">#0B5C71</item>
+    </style>
+
+
+    <style name="details_capital_textview_holder" parent="textViewDetails_Holder">
+        <item name="android:textColor">#2EA6A5</item>
+    </style>
+
+    <style name="details_capital_textview_value" parent="textViewDetails_value">
+        <item name="android:textColor">#147171</item>
+    </style>
+
+
+
+
+    <style name="details_phone_textview_holder" parent="textViewDetails_Holder">
+        <item name="android:textColor">#63930E</item>
+    </style>
+
+    <style name="details_phone_textview_value" parent="textViewDetails_value">
+        <item name="android:textColor">#3B5A04</item>
+    </style>
+
+
+
+
+    <style name="details_area_textview_holder" parent="textViewDetails_Holder">
+        <item name="android:textColor">#A1992C</item>
+    </style>
+
+    <style name="details_area_textview_value" parent="textViewDetails_value">
+        <item name="android:textColor">#67621B</item>
+    </style>
+
+
+
+
+
+    <style name="details_population_textview_holder" parent="textViewDetails_Holder">
+        <item name="android:textColor">#B17700</item>
+    </style>
+
+    <style name="details_population_textview_value" parent="textViewDetails_value">
+        <item name="android:textColor">#6A4700</item>
+    </style>
+
+
+
+
+    <style name="details_subregion_textview_holder" parent="textViewDetails_Holder">
+        <item name="android:textColor">#B85957</item>
+    </style>
+
+    <style name="details_subregion_textview_value" parent="textViewDetails_value">
+        <item name="android:textColor">#683231</item>
+    </style>
+
+
+    <style name="details_currency_textview_holder" parent="textViewDetails_Holder">
+        <item name="android:textColor">#A33576</item>
+    </style>
+
+    <style name="details_currency_textview_value" parent="textViewDetails_value">
+        <item name="android:textColor">#5A1E42</item>
+    </style>
+
+
+
+
+    <style name="details_language_textview_holder" parent="textViewDetails_Holder">
+        <item name="android:textColor">#8C55A5</item>
+    </style>
+
+    <style name="details_language_textview_value" parent="textViewDetails_value">
+        <item name="android:textColor">#513260</item>
+    </style>
+
+
+    <style name="details_border_textview_holder" parent="textViewDetails_Holder">
+        <item name="android:textColor">#6A28B5</item>
+    </style>
+
+    <style name="details_border_textview_value" parent="textViewDetails_value">
+        <item name="android:textColor">#431677</item>
     </style>
 </resources>

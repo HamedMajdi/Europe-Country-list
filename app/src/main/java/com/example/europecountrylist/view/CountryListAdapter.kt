@@ -62,7 +62,7 @@ class CountryListAdapter(var countries: ArrayList<Country>, private val listener
             val area = country.area
             if (area != null) {
                 if (area % 1 == 0.0){
-                    tvArea.text = (area.toInt()).toString() + " KM"
+                    tvArea.text = (area.toInt()).toString() + " km²"
                 } else {
                     tvArea.text = area.toString() + "KM"
                 }

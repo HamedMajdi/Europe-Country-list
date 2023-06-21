@@ -1,16 +1,23 @@
 package com.example.europecountrylist.model
 
+import android.os.Parcelable
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Country(
     @SerializedName("name")
     val countryName: Name,
 
     @SerializedName("capital")
     val capital: List<String>?,
+
+    @SerializedName("borders")
+    val borders: List<String>?,
+
 
     @SerializedName("flags")
     val flag: Flag?,
@@ -32,25 +39,31 @@ data class Country(
 
     @SerializedName("languages")
     val languages: Map<String, String>,
-    )
+    ): Parcelable
 
+@Parcelize
 data class Currencies(
     @SerializedName("name")
-    val id: String,
+    val name: String,
     @SerializedName("symbol")
-    val bucket: String,
-)
+    val symbol: String,
+): Parcelable
 
+@Parcelize
 data class Name(
     @SerializedName("common")
     val finalName: String
-)
+): Parcelable
 
+
+@Parcelize
 data class Flag(
     @SerializedName("png")
     val finalPhoto: String
-)
+): Parcelable
 
+
+@Parcelize
 data class NumberCode(
 
     @SerializedName("root")
@@ -58,4 +71,4 @@ data class NumberCode(
 
     @SerializedName("suffixes")
     val suffix: List<String>?,
-)
+): Parcelable
