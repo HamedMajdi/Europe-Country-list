@@ -1,7 +1,6 @@
 package com.example.europecountrylist.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.europecountrylist.model.CountriesService
@@ -14,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 
 class ListViewModel : ViewModel() {
 
+
     private val countriesService = CountriesService()
 
     // disposable uses RxJava to get the information from server. Then when the viewModel is closed,
@@ -25,34 +25,86 @@ class ListViewModel : ViewModel() {
     val loading = MutableLiveData<Boolean>()
 
     // items hold the complete list of items fetched from the server
-    private val _filteredItems = MutableLiveData<List<Country>>()
-    val filteredItems: LiveData<List<Country>> = _filteredItems
+    val _filteredItems = MutableLiveData<List<Country>>()
+//    val filteredItems: LiveData<List<Country>> = _filteredItems
 
 
-    fun refresh() {
-        fetchCountries()
+    val _sortedItems = MutableLiveData<List<Country>>()
+//    val sortedItems: LiveData<List<Country>> = _sortedItems
+
+    fun refresh(filters: Array<String>?, ascending: Int, sortCriteria: String?) {
+        fetchCountries(filters, ascending, sortCriteria)
     }
 
-    private fun fetchCountries() {
+    private fun fetchCountries(filters: Array<String>?, ascending: Int, sortCriteria: String?) {
         loading.value = true
 
         disposable.add(
             countriesService.getCountries()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<List<Country>>() {
+                .subscribeWith(object : DisposableSingleObserver<List<Country>>() {
                     override fun onSuccess(value: List<Country>?) {
-                        countries.value = value
+
+                        if (!filters.isNullOrEmpty()) {
+                            var filteredList = listOf<Country>()
+
+                            for (i in 0..filters.size - 1) {
+                                filteredList += value!!.filter {
+                                    it.subRegion!!.contains(filters.get(i))
+                                }
+                            }
+                            countries.value = filteredList
+
+                        } else {
+                            countries.value = value!!
+                        }
+
+
+                        val currentItems = countries.value ?: emptyList()
+                        var sortedList = listOf<Country>()
+                        if (ascending == 1) {
+                            if (sortCriteria == "name") {
+                                sortedList = currentItems.sortedByDescending { item ->
+                                    item.countryName.finalName
+                                }
+                            } else if (sortCriteria == "area") {
+                                sortedList = currentItems.sortedBy { item ->
+                                    item.area
+                                }
+                            } else if (sortCriteria == "population") {
+                                sortedList = currentItems.sortedBy { item ->
+                                    item.population
+                                }
+                            }
+                            countries.value = sortedList
+                        }
+                        else if (ascending == 0) {
+                            if (sortCriteria == "name") {
+                                sortedList = currentItems.sortedBy { item ->
+                                    item.countryName.finalName
+                                }
+                            } else if (sortCriteria == "area") {
+                                sortedList = currentItems.sortedByDescending { item ->
+                                    item.area
+                                }
+                            } else if (sortCriteria == "population") {
+                                sortedList = currentItems.sortedByDescending { item ->
+                                    item.population
+                                }
+                            }
+                            countries.value = sortedList
+
+                        }
+
                         filterItems("")
                         countryLoadError.value = false
                         loading.value = false
-
                     }
 
                     override fun onError(e: Throwable?) {
                         countryLoadError.value = true
                         loading.value = false
-                        Log.d("ERROR", e.toString())
                     }
 
                 })
@@ -70,11 +122,21 @@ class ListViewModel : ViewModel() {
         val filteredList = if (query.isNotBlank()) {
             originalList.filter { item ->
                 item.countryName.finalName.contains(query, ignoreCase = true)
+//                item.subRegion!!.contains(query, ignoreCase = true)
             }
         } else {
             originalList
         }
-
         _filteredItems.value = filteredList
+    }
+
+
+    fun sortItemsByName(metric: String, ascending: Boolean) {
+        val currentItems = countries.value ?: emptyList()
+
+        val sortedList = currentItems.sortedBy { item ->
+            item.area
+        }
+        _sortedItems.value = sortedList
     }
 }

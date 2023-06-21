@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_page_nav_control"
+    app:startDestination="@id/fragmentAllData">
+
+    <fragment
+        android:id="@+id/fragmentAllData"
+        android:name="com.example.europecountrylist.view.FragmentAllData"
+        android:label="fragment_all_data"
+        tools:layout="@layout/fragment_all_data" >
+        <action
+            android:id="@+id/action_fragmentAllData_to_fragmentFilter"
+            app:destination="@id/fragmentFilter"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="filters"
+            app:argType="string[]"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_fragmentAllData_to_fragmentDetails"
+            app:destination="@id/fragmentDetails" />
+        <action
+            android:id="@+id/action_fragmentAllData_to_fragmentSort"
+            app:destination="@id/fragmentSort" />
+
+        <argument
+            android:name="ascending"
+            app:argType="integer" />
+        <argument
+            android:name="sort_type"
+            app:argType="string"
+            app:nullable="true" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/fragmentFilter"
+        android:name="com.example.europecountrylist.view.FragmentFilter"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter" >
+        <action
+            android:id="@+id/action_fragmentFilter_to_fragmentAllData"
+            app:destination="@id/fragmentAllData"
+            app:popUpTo="@id/main_page_nav_control" />
+
+        <argument
+            android:name="filters"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="ascending"
+            app:argType="integer" />
+        <argument
+            android:name="sort_type"
+            app:argType="string"
+            app:nullable="true" />
+    </dialog>
+    <fragment
+        android:id="@+id/fragmentDetails"
+        android:name="com.example.europecountrylist.view.FragmentDetails"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/fragmentSort"
+        android:name="com.example.europecountrylist.view.FragmentSort"
+        android:label="fragment_sort"
+        tools:layout="@layout/fragment_sort" >
+        <action
+            android:id="@+id/action_fragmentSort_to_fragmentAllData"
+            app:destination="@id/fragmentAllData"
+            app:popUpTo="@id/main_page_nav_control" />
+        <argument
+            android:name="filters"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="ascending"
+            app:argType="integer" />
+        <argument
+            android:name="sort_type"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+</navigation>

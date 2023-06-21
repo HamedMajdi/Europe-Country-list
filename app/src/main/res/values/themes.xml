@@ -15,4 +15,10 @@
     <style name="Text">
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="Smaller_Drawable">
+        <item name="android:textSize">48sp</item>
+        <item name="android:scaleX">0.3</item>
+        <item name="android:scaleY">0.3</item>
+    </style>
 </resources>
