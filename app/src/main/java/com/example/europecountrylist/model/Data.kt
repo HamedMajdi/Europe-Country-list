@@ -21,6 +21,9 @@ data class Country(
     @SerializedName("area")
     val area: Double?,
 
+    @SerializedName("population")
+    val population: Int?,
+
     @SerializedName("subregion")
     val subRegion: String?,
 
@@ -29,7 +32,6 @@ data class Country(
 
     @SerializedName("languages")
     val languages: Map<String, String>,
-
     )
 
 data class Currencies(

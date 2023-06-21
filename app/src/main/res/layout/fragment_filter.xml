@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.FragmentFilter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/checkbox_see"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:lottie_rawRes="@raw/checkbox" />
+
+        <TextView
+            android:id="@+id/tv_see"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="24dp"
+            android:gravity="left|center"
+            android:text="Southeast Europe" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/checkbox_se"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:lottie_rawRes="@raw/checkbox" />
+
+        <TextView
+            android:id="@+id/tv_se"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="24dp"
+            android:gravity="left|center"
+            android:text="Southern Europe" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/checkbox_ee"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:lottie_rawRes="@raw/checkbox" />
+
+        <TextView
+            android:id="@+id/tv_ee"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="24dp"
+            android:gravity="left|center"
+            android:text="Eastern Europe" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/checkbox_ne"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:lottie_rawRes="@raw/checkbox" />
+
+        <TextView
+            android:id="@+id/tv_ne"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="24dp"
+            android:gravity="left|center"
+            android:text="Northern Europe" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/checkbox_ce"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:lottie_rawRes="@raw/checkbox" />
+
+        <TextView
+            android:id="@+id/tv_ce"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="24dp"
+            android:gravity="left|center"
+            android:text="Central Europe" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/checkbox_we"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:lottie_rawRes="@raw/checkbox" />
+
+        <TextView
+            android:id="@+id/tv_we"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="24dp"
+            android:gravity="left|center"
+            android:text="Western Europe" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_filter"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:text="Filter"/>
+
+</LinearLayout>
