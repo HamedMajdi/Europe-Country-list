@@ -1,6 +1,5 @@
 package com.example.europecountrylist.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.europecountrylist.model.CountriesService
@@ -26,11 +25,6 @@ class ListViewModel : ViewModel() {
 
     // items hold the complete list of items fetched from the server
     val _filteredItems = MutableLiveData<List<Country>>()
-//    val filteredItems: LiveData<List<Country>> = _filteredItems
-
-
-    val _sortedItems = MutableLiveData<List<Country>>()
-//    val sortedItems: LiveData<List<Country>> = _sortedItems
 
     fun refresh(filters: Array<String>?, ascending: Int, sortCriteria: String?) {
         fetchCountries(filters, ascending, sortCriteria)
@@ -47,9 +41,9 @@ class ListViewModel : ViewModel() {
                     override fun onSuccess(value: List<Country>?) {
 
                         if (!filters.isNullOrEmpty()) {
-                            var filteredList = listOf<Country>()
+                            val filteredList = mutableListOf<Country>()
 
-                            for (i in 0..filters.size - 1) {
+                            for (i in filters.indices) {
                                 filteredList += value!!.filter {
                                     it.subRegion!!.contains(filters.get(i))
                                 }
@@ -122,7 +116,6 @@ class ListViewModel : ViewModel() {
         val filteredList = if (query.isNotBlank()) {
             originalList.filter { item ->
                 item.countryName.finalName.contains(query, ignoreCase = true)
-//                item.subRegion!!.contains(query, ignoreCase = true)
             }
         } else {
             originalList
@@ -130,13 +123,4 @@ class ListViewModel : ViewModel() {
         _filteredItems.value = filteredList
     }
 
-
-    fun sortItemsByName(metric: String, ascending: Boolean) {
-        val currentItems = countries.value ?: emptyList()
-
-        val sortedList = currentItems.sortedBy { item ->
-            item.area
-        }
-        _sortedItems.value = sortedList
-    }
 }

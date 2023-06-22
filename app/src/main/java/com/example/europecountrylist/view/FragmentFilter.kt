@@ -35,11 +35,13 @@ class FragmentFilter : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        Log.d("FINAL TEST", args.filters?.size.toString())
         try {
             if (args.filters!!.isNotEmpty()){
                 for(i in 0 until args.filters!!.size){
 
-                    when(args.filters!!.get(0)){
+                    when(args.filters!!.get(i)){
                         "Southeast Europe" -> {
                             binding.checkboxSee.setMinAndMaxFrame(30, 90)
                             binding.checkboxSee.playAnimation()
