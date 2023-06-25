@@ -51,10 +51,10 @@ class FragmentDetails : Fragment() {
 
         var currency = ""
         val keysCurrency = args.countryDetails.currency.keys
-        for (i in keysCurrency.indices){
+        for (i in 0 until (keysCurrency.size)){
 
             currency += keysCurrency.elementAt(i) + "   (" + args.countryDetails.currency.values.elementAt(i).name +")"
-            if ((i - keysCurrency.size) > 0){
+            if ((i - keysCurrency.size) < -1){
                 currency += "\n"
             }
         }
@@ -63,10 +63,10 @@ class FragmentDetails : Fragment() {
 
         var languages = ""
         val keysLang = args.countryDetails.languages.keys
-        for (i in keysLang.indices){
+        for (i in 0 until (keysLang.size)){
 
             languages += keysLang.elementAt(i) + "   (" + args.countryDetails.languages.values.elementAt(i) +")"
-            if ((i - keysLang.size) > 0){
+            if ((i - keysLang.size) < -1){
                 languages += "\n"
             }
         }
@@ -78,7 +78,7 @@ class FragmentDetails : Fragment() {
         for (i in 0 until (args.countryDetails.borders?.size ?: 0)){
 
             borders += args.countryDetails.borders!!.get(i)
-            if ((i - keysLang.size) > 0){
+            if ((i - keysLang.size) < -1){
                 borders += "\n"
             }
         }
