@@ -1,6 +1,7 @@
 package com.example.europecountrylist.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +32,8 @@ class FragmentDetails : Fragment() {
         val dec = DecimalFormat("#,###")
 
         val name = args.countryDetails.countryName.finalName
-        val capital = args.countryDetails.capital!!.get(0)
-        val phone = args.countryDetails.phone!!.root+ args.countryDetails.phone!!.suffix!!.get(0)
+        val capital = args.countryDetails.capital?.get(0)
+        val phone = args.countryDetails.phone?.root+ args.countryDetails.phone?.suffix?.get(0)
         val area = dec.format(args.countryDetails.area)
         val population = dec.format(args.countryDetails.population)
 
@@ -74,7 +75,7 @@ class FragmentDetails : Fragment() {
 
 
         var borders = ""
-        for (i in 0 until args.countryDetails.borders!!.size){
+        for (i in 0 until (args.countryDetails.borders?.size ?: 0)){
 
             borders += args.countryDetails.borders!!.get(i)
             if ((i - keysLang.size) > 0){
